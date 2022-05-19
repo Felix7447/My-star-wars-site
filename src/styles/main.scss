@@ -1,0 +1,30 @@
+$background-white: rgba(235, 235, 235, 0.959);
+
+@mixin sections {
+    height: 15%;
+    border: 2px black solid;
+    display: flex;
+    justify-content: space-around;
+    background-color: $background-white;
+}
+
+body { 
+    margin: 0;
+    text-align: center;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png);
+}
+
+header {
+    @include sections;
+}
+
+main {
+    @include sections;
+    height: 100vh;
+    background-color: transparent;
+    color: white
+}
+
+footer {
+    @include sections;
+}
