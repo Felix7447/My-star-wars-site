@@ -1,8 +1,10 @@
 $background-white: rgba(235, 235, 235, 0.959);
+$border-rad: 24px;
+$font-size-carousel: 28px;
 
 @mixin sections {
-    height: 15%;
-    border: 2px black solid;
+    width: 100%;
+    height: 20%;
     display: flex;
     justify-content: space-around;
     background-color: $background-white;
@@ -11,7 +13,10 @@ $background-white: rgba(235, 235, 235, 0.959);
 body { 
     margin: 0;
     text-align: center;
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png);
+    background-image: url('../assets/images/Star_Wars_bg.png');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
 }
 
 header {
@@ -22,7 +27,75 @@ main {
     @include sections;
     height: 100vh;
     background-color: transparent;
-    color: white
+    color: white;
+}
+
+.carousel-container {
+    width: inherit;
+    height: 550px;
+    margin: 44px 0;
+    background-color: rgba(0, 0, 0, 0.473);
+}
+
+.carousel {
+    height: 500px;
+    padding: 36px 28px;
+    white-space: nowrap;
+    gap: 14px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.carousel-element {
+    width: 358px;
+    height: 496px;
+    border: 2px white solid;
+    border-radius: $border-rad;
+    display: inline-block;
+    position: relative;
+    transform-origin: center;
+    transition: 450ms all;
+    cursor: pointer;
+}
+
+.carousel-element__content {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    bottom: 0;
+    opacity: 0;
+    border-radius: $border-rad;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 450ms all;
+}
+
+.carousel-element:hover {
+    transform: scale(1.05);
+    margin: 0 16px;
+}
+
+.carousel-element:hover .carousel-element__content {
+    background: linear-gradient(rgba(0, 0, 0, 0.05), black);
+    opacity: 1;
+}
+
+.carousel-element__content h3 {
+    font-size: $font-size-carousel;
+}
+
+.carousel-element a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.carousel-element__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-rad;
 }
 
 footer {

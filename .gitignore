@@ -143,3 +143,6 @@ dist
 *.css.map
 *.sass.map
 *.scss.map
+
+### Files ###
+src/assets/images/*.png
