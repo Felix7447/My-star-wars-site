@@ -8,17 +8,19 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 /** @type {import('webpack').Configuration} */
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
+        filename: 'bundle.js',
         publicPath: '/dist/',
     },
     resolve: {
         extensions: ['.js'],
         alias: {
             '@styles': path.resolve(__dirname, 'src/styles/'),
-            '@images': path.resolve(__dirname, './src/assets/images')
+            '@images': path.resolve(__dirname, './src/assets/images'),
+            '@icons': path.resolve(__dirname, './src/assets/icons'),
+            '@utils': path.resolve(__dirname, './src/utils/')
         }
     },
     mode: 'production',

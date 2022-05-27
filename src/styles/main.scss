@@ -1,13 +1,27 @@
 $background-white: rgba(235, 235, 235, 0.959);
 $border-rad: 24px;
 $font-size-carousel: 28px;
+$transition-time: 450ms;
+$scrollbar-color: rgba(235, 235, 235, 0.575);
+$scrollbar-color-hover: rgba(235, 235, 235, 0.959);
 
 @mixin sections {
     width: 100%;
-    height: 20%;
+    height: 100px;
     display: flex;
     justify-content: space-around;
     background-color: $background-white;
+}
+
+@mixin arrows {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: 43%;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: $transition-time;
 }
 
 body { 
@@ -21,34 +35,48 @@ body {
 
 header {
     @include sections;
+    margin-bottom: 4.5%;
 }
 
 main {
     @include sections;
-    height: 100vh;
-    background-color: transparent;
+    height: 81.1vh;
+    background-color: rgba(0, 0, 0, 0.473);
     color: white;
+    display: block;
+    margin-bottom: 0px;
+    position: relative;
 }
+
+.main-message {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 3% 12px 24px;
+}
+
+// CAROUSEL STYLES
 
 .carousel-container {
+    position: relative;
     width: inherit;
-    height: 550px;
-    margin: 44px 0;
-    background-color: rgba(0, 0, 0, 0.473);
+    height: 80%;
+    margin: 4% 0;
 }
 
+
 .carousel {
-    height: 500px;
+    height: 100%;
     padding: 36px 28px;
     white-space: nowrap;
     gap: 14px;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
+    scroll-behavior: smooth;
 }
 
 .carousel-element {
-    width: 358px;
-    height: 496px;
+    width: 20%;
+    height: 85%;
     border: 2px white solid;
     border-radius: $border-rad;
     display: inline-block;
@@ -56,6 +84,11 @@ main {
     transform-origin: center;
     transition: 450ms all;
     cursor: pointer;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 }
 
 .carousel-element__content {
@@ -63,32 +96,22 @@ main {
     width: 100%;
     height: 20%;
     bottom: 0;
-    opacity: 0;
     border-radius: $border-rad;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 450ms all;
+    transition: $transition-time all;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), black);
+
+    h3 {
+        font-size: $font-size-carousel;
+    }
 }
 
 .carousel-element:hover {
     transform: scale(1.05);
     margin: 0 16px;
-}
-
-.carousel-element:hover .carousel-element__content {
-    background: linear-gradient(rgba(0, 0, 0, 0.05), black);
-    opacity: 1;
-}
-
-.carousel-element__content h3 {
-    font-size: $font-size-carousel;
-}
-
-.carousel-element a {
-    text-decoration: none;
-    color: inherit;
 }
 
 .carousel-element__image {
@@ -98,6 +121,76 @@ main {
     border-radius: $border-rad;
 }
 
+// CAROUSEL ARROWS
+.carousel-container__left-arrow {
+    @include arrows;
+    left: 2%;
+    transform: rotate(180deg);
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
+.carousel-container__left-arrow:hover, .carousel-container__right-arrow:hover {
+    opacity: 1;
+}
+
+.carousel-container__right-arrow {
+    @include arrows;
+    right: 2%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
 footer {
     @include sections;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+}
+
+@media (max-width: 600px) {
+    header {
+        margin-bottom: 20%;
+    }
+    .main-message {
+        font-size: 2.8em;
+    }
+    .carousel-container {
+        height: 64%;
+    }
+    .carousel {
+        padding: 4% 8%;
+        height: 100%;
+        overflow-x: scroll;
+    }
+    .carousel::-webkit-scrollbar {
+        background: rgba(128, 128, 128, 0.144);
+    }
+    .carousel::-webkit-scrollbar-thumb {
+        background: $scrollbar-color;
+        width: 40%;
+        border-radius: 45%;
+    }
+    .carousel::-webkit-scrollbar-thumb:hover {
+        background: $scrollbar-color-hover;
+    }
+    .carousel-element {
+        height: 90%;
+        width: 80%;
+    }
+    .carousel-container__left-arrow, .carousel-container__right-arrow {
+        display: none;
+    }
+    .carousel-element:hover {
+        margin: 0 12px;
+    }
 }
