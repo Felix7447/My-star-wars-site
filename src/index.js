@@ -1,4 +1,5 @@
 import '@styles/main.scss';
+import '@styles/footer.scss';
 
 const carousel = document.getElementById('carousel');
 const leftArrow = document.getElementById('left-arrow');

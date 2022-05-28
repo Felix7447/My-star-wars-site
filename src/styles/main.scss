@@ -1,3 +1,15 @@
+// @import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+
+/* bakbak-one-regular - latin */
+@font-face {
+    font-family: 'Bakbak One';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('../assets/fonts/bakbak-one-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/bakbak-one-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+}
+
 $background-white: rgba(235, 235, 235, 0.959);
 $border-rad: 24px;
 $font-size-carousel: 28px;
@@ -27,15 +39,24 @@ $scrollbar-color-hover: rgba(235, 235, 235, 0.959);
 body { 
     margin: 0;
     text-align: center;
-    background-image: url('../assets/images/Star_Wars_bg.png');
-    background-repeat: no-repeat;
-    background-color: black;
+    background: url('../assets/images/Star_Wars_bg.png') no-repeat black;
     background-position: center;
+    font-family: 'Bakbak One', cursive;
 }
 
 header {
     @include sections;
     margin-bottom: 4.5%;
+    display: flex;
+    align-items: center;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+header img {
+    width: 45%;
 }
 
 main {

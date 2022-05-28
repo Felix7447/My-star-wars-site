@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -13,6 +14,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: 'bundle.js',
         publicPath: '/dist/',
+        assetModuleFilename: 'assets/images/[hash][ext][query]',
     },
     resolve: {
         extensions: ['.js'],
@@ -45,7 +47,25 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader'
-                ]
+                ],
+            },
+            {
+                test: /\.png/,
+                type: 'asset/resource'
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 10000,
+                        mimetype: "application/font-woff",
+                        name: "[name].[contenthash].[ext]",
+                        outputPath: "./assets/fonts/",
+                        esModule: false,
+                    }
+                },
+                type: 'javascript/auto'
             }
         ],
     },
@@ -56,6 +76,14 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'assets/[name].css'
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "src", "assets/images"),
+                    to: "assets/images"
+                }
+            ]
         }),
         new CleanWebpackPlugin(),
     ],
