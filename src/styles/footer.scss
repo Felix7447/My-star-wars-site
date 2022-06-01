@@ -1,3 +1,41 @@
-footer {
-    
+.footer_info__media {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    place-content: center;
+    place-items: center;
+
+    h2 {
+        width: 80%;
+        margin: 0;
+    }
+
+    a {
+        width: 50%;
+        text-decoration: none;
+        transition: 450ms;
+    }
+
+    figure {
+        text-align: center;
+        width: 100%;
+        margin: 0px;
+    }
+
+    img {
+        width: 80%;
+    }
+
+    p {
+        margin: 0;
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.footer_info__media--github:hover {
+    transform: scale(1.1);
+}
+
+.footer_info__media--linkedin:hover {
+    transform: scale(1.1);
 }

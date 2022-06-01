@@ -24,7 +24,6 @@ function router(route) {
     } else {
         mainContent.innerHTML = routes[route];
     }
-    
 }
 
 export default router;
