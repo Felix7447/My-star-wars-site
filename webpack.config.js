@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -19,10 +20,14 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@styles': path.resolve(__dirname, 'src/styles/'),
-            '@images': path.resolve(__dirname, './src/assets/images'),
+            '@fonts': path.resolve(__dirname, './src/assets/fonts'),
             '@icons': path.resolve(__dirname, './src/assets/icons'),
-            '@utils': path.resolve(__dirname, './src/utils/')
+            '@images': path.resolve(__dirname, './src/assets/images'),
+            '@sounds': path.resolve(__dirname, './src/assets/sounds'),
+            '@routes': path.resolve(__dirname, './src/routes/'),
+            '@styles': path.resolve(__dirname, './src/styles/'),
+            '@views': path.resolve(__dirname, './src/views/'),
+            '@config': path.resolve(__dirname, './src/config/'),
         }
     },
     mode: 'production',
@@ -71,6 +76,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            inject: true,
             template: './public/index.html',
             filename: './index.html'
         }),
@@ -85,6 +91,7 @@ module.exports = {
                 }
             ]
         }),
+        new Dotenv(),
         new CleanWebpackPlugin(),
     ],
     optimization: {

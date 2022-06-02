@@ -10,13 +10,15 @@
          url('../assets/fonts/bakbak-one-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
 }
 
-$background-white: rgba(235, 235, 235, 0.959);
-$border-rad: 24px;
-$font-size-carousel: 28px;
-$transition-time: 450ms;
-$scrollbar-color: rgba(235, 235, 235, 0.575);
-$scrollbar-color-hover: rgba(235, 235, 235, 0.959);
 
+:root {
+    --background-white: rgba(235, 235, 235);
+    --border-rad: 24px;
+    --font-size-carousel: 28px;
+    --transition-time: 450ms;
+    --scrollbar-color: rgba(235, 235, 235, 0.575);
+    --scrollbar-color-hover: rgba(235, 235, 235, 0.959);
+}
 
 
 @mixin sections {
@@ -24,7 +26,7 @@ $scrollbar-color-hover: rgba(235, 235, 235, 0.959);
     height: 100px;
     display: flex;
     justify-content: space-around;
-    background-color: $background-white;
+    background-color: var(--background-white);
 }
 
 @mixin arrows {
@@ -35,7 +37,7 @@ $scrollbar-color-hover: rgba(235, 235, 235, 0.959);
     z-index: 1;
     cursor: pointer;
     opacity: 0.3;
-    transition: $transition-time;
+    transition: var(--transition-time);
 }
 
 body { 
@@ -63,7 +65,7 @@ header img {
 
 main {
     @include sections;
-    height: 81.1vh;
+    height: 80%;
     background-color: rgba(0, 0, 0, 0.473);
     color: white;
     display: block;
@@ -101,7 +103,7 @@ main {
     width: 20%;
     height: 85%;
     border: 2px white solid;
-    border-radius: $border-rad;
+    border-radius: var(--border-rad);
     display: inline-block;
     position: relative;
     transform-origin: center;
@@ -119,16 +121,16 @@ main {
     width: 100%;
     height: 20%;
     bottom: 0;
-    border-radius: $border-rad;
+    border-radius: var(--border-rad);
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: $transition-time all;
+    transition: var(--transition-time) all;
     background: linear-gradient(rgba(0, 0, 0, 0.05), black);
 
     h3 {
-        font-size: $font-size-carousel;
+        font-size: var(--font-size-carousel);
     }
 }
 
@@ -141,7 +143,7 @@ main {
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: $border-rad;
+    border-radius: var(--border-rad);
 }
 
 // CAROUSEL ARROWS
@@ -204,12 +206,12 @@ footer {
         background: rgba(128, 128, 128, 0.144);
     }
     .carousel::-webkit-scrollbar-thumb {
-        background: $scrollbar-color;
+        background: var(--scrollbar-color);
         width: 40%;
         border-radius: 45%;
     }
     .carousel::-webkit-scrollbar-thumb:hover {
-        background: $scrollbar-color-hover;
+        background: var(--scrollbar-color-hover);
     }
     .carousel-element {
         height: 90%;

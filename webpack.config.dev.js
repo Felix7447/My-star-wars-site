@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 /** @type {import('webpack').Configuration} */
 
@@ -15,13 +16,18 @@ module.exports = {
     resolve: {
         extensions: ['.js'],
         alias: {
-            '@styles': path.resolve(__dirname, 'src/styles/'),
-            '@images': path.resolve(__dirname, './src/assets/images'),
+            '@fonts': path.resolve(__dirname, './src/assets/fonts'),
             '@icons': path.resolve(__dirname, './src/assets/icons'),
-            '@utils': path.resolve(__dirname, './src/utils/')
+            '@images': path.resolve(__dirname, './src/assets/images'),
+            '@sounds': path.resolve(__dirname, './src/assets/sounds'),
+            '@routes': path.resolve(__dirname, './src/routes/'),
+            '@styles': path.resolve(__dirname, './src/styles/'),
+            '@views': path.resolve(__dirname, './src/views/'),
+            '@config': path.resolve(__dirname, './src/config/'),
         }
     },
     mode: 'development',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -82,6 +88,7 @@ module.exports = {
                 }
             ]
         }),
+        new Dotenv(),
     ],
     devServer: {
         static: path.join(__dirname, 'dist'),

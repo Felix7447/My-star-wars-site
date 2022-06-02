@@ -12,7 +12,7 @@
     a {
         width: 50%;
         text-decoration: none;
-        transition: 450ms;
+        transition: var(--transition-time);
     }
 
     figure {

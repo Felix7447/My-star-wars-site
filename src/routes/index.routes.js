@@ -1,10 +1,10 @@
-import home from '../views/Home';
-import characters from '../views/Characters';
-import planets from '../views/Planets';
-import films from '../views/Films';
-import species from '../views/Species';
-import vehicles from '../views/Vehicles';
-import starships from '../views/Starships';
+import home from '@views/Home';
+import characters from '@views/Characters';
+import planets from '@views/Planets';
+import films from '@views/Films';
+import species from '@views/Species';
+import vehicles from '@views/Vehicles';
+import starships from '@views/Starships';
 
 const mainContent = document.getElementById('root')
 
@@ -18,11 +18,11 @@ const routes = {
     '#/Starships': starships(),
 }
 
-function router(route) {
+async function router(route) {
     if (route === '') {
         home()
     } else {
-        mainContent.innerHTML = routes[route];
+        mainContent.innerHTML = await routes[route];
     }
 }
 
