@@ -1,4 +1,5 @@
 import config from '@config/config';
+import loader from '@views/Loader';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -7,7 +8,11 @@ const starships = async () => {
     const info = await axios.get(config.API_URL_STARSHIPS);
     const starships = info.data.results;
     const cards = createStarships(starships);
+
+    const loading = loader();
+
     const view = `
+      ${loading}
       <h1>Starships</h1>
       <section class="cards-container">
         ${cards}
@@ -15,17 +20,22 @@ const starships = async () => {
   `;
   return view;
   } catch (error) {
-    console.log(error);
+    const message = `
+      <h1>${error.message}</h1>
+      <h3>Please try again later...</h3>
+    `
+    return message;
   }
 };
 
 const createStarships = (starships) => {
   let view = ``;
   starships.forEach(element => {
+    const image = require(`@images/Starships/${element.name}.png`);
     view += `
       <div class="card-info">
         <h2>${element.name}</h2>
-        <img src="../assets/images/Starships/${element.name}.png" alt="${element.name}">
+        <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
             <p>Model: ${element.model} <br>

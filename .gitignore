@@ -152,3 +152,6 @@ src/assets/images/Films/*.png
 src/assets/images/Species/*.png
 src/assets/images/Vehicles/*.png
 src/assets/images/Starships/*.png
+
+### Icons ###
+src/assets/icons/*.png

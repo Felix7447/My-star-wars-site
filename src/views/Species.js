@@ -1,4 +1,5 @@
 import config from '@config/config';
+import loader from '@views/Loader';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -7,7 +8,10 @@ const species = async () => {
     const info = await axios.get(config.API_URL_SPECIES);
     const species = info.data.results;
     const card = createSpecies(species);
+    const loading = loader();
+
     const view = `
+      ${loading}
       <h1>Species</h1>
       <section class="cards-container">
         ${card}
@@ -15,17 +19,22 @@ const species = async () => {
   `;
   return view;
   } catch (error) {
-    console.log(error);
+    const message = `
+      <h1>${error.message}</h1>
+      <h3>Please try again later...</h3>
+    `
+    return message;
   }
 };
 
 const createSpecies = (species) => {
   let view = ``;
   species.forEach(element => {
+    const image = require(`@images/Species/${element.name}.png`);
     view += `
       <div class="card-info">
         <h2>${element.name}</h2>
-        <img src="../assets/images/Species/${element.name}.png" alt="${element.name}">
+        <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
             <p>Average Height: ${element.average_height} cm <br>

@@ -7,7 +7,6 @@ import vehicles from '@views/Vehicles';
 import starships from '@views/Starships';
 
 const mainContent = document.getElementById('root')
-const loader = document.getElementById('loader')
 
 const routes = { 
     '': home,
@@ -24,6 +23,8 @@ async function router(route) {
         home()
     } else {
         mainContent.innerHTML = await routes[route];
+        const loaderElement = document.getElementById("loader");
+        loaderElement.style.display = 'none';
     }
 }
 

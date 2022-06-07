@@ -1,3 +1,4 @@
+import loader from '@views/Loader';
 import next from '@icons/next.png';
 import Characters from '@images/Characters.png';
 import Planets from '@images/Planets.png';
@@ -9,7 +10,9 @@ import Starships from '@images/Starships.png';
 
 const home = () => {
     const mainContent = document.getElementById('root');
+    let loading = loader();
     const view = `
+    ${loading}
     <h2 class="main-message">WELCOME MY YOUNG PADAWAN</h2>
     <section class="carousel-container">
         <div id="left-arrow" class="carousel-container__left-arrow">
@@ -20,15 +23,15 @@ const home = () => {
         </div>
         <section id="carousel" class="carousel">
             <div class="carousel-element">
-                <a href="/#/Characters">
-                    <img class="carousel-element__image" src=${Characters} alt="Characters">
+                <a class="carouselElement" href="./#/Characters">
+                    <img id="charactersImage" class="carousel-element__image" src=${Characters} alt="Characters">
                     <div class="carousel-element__content">
                         <h3>Characters</h3>
                     </div>
                 </a>
             </div>
             <div class="carousel-element">
-                <a href="/#/Planets">
+                <a class="carouselElement" href="./#/Planets">
                     <img class="carousel-element__image" src=${Planets} alt="Planets">
                     <div class="carousel-element__content">
                         <h3>Planets</h3>
@@ -36,7 +39,7 @@ const home = () => {
                 </a>
             </div>
             <div class="carousel-element">
-                <a href="/#/Films">
+                <a class="carouselElement" href="./#/Films">
                     <img class="carousel-element__image" src=${Films} alt="Films">
                     <div class="carousel-element__content">
                         <h3>Films</h3>
@@ -44,7 +47,7 @@ const home = () => {
                 </a>
             </div>
             <div class="carousel-element">
-                <a href="/#/Species">
+                <a class="carouselElement" href="./#/Species">
                     <img class="carousel-element__image" src=${Species} alt="Species">
                     <div class="carousel-element__content">
                         <h3>Species</h3>
@@ -52,7 +55,7 @@ const home = () => {
                 </a>
             </div>
             <div class="carousel-element">
-                <a href="/#/Vehicles">
+                <a class="carouselElement" href="./#/Vehicles">
                     <img class="carousel-element__image" src=${Vehicles} alt="Vehicles">
                     <div class="carousel-element__content">
                         <h3>Vehicles</h3>
@@ -60,7 +63,7 @@ const home = () => {
                 </a>
             </div>
             <div class="carousel-element">
-                <a href="/#/Starships">
+                <a class="carouselElement" href="./#/Starships">
                     <img class="carousel-element__image" src=${Starships} alt="Starships">
                     <div class="carousel-element__content">
                         <h3>Starships</h3>
@@ -78,6 +81,23 @@ function addEvents() {
     const carousel = document.getElementById('carousel');
     const leftArrow = document.getElementById('left-arrow');
     const rightArrow = document.getElementById('right-arrow');
+    const carouselElement = document.getElementsByClassName('carouselElement');
+    const charactersImage = document.getElementById('charactersImage');
+    const loader = document.getElementById('loader');
+
+    loader.style.display = 'flex';
+
+    charactersImage.addEventListener("load", function() {
+        loader.style.display = 'none';
+        console.log("loaded");
+    });
+
+    for (let index = 0; index < carouselElement.length; index++) {
+        carouselElement[index].addEventListener("click", function() {
+            loader.style.display = 'flex';
+            console.log("hi");
+        })
+    }
     
     leftArrow.addEventListener("click", function() {
         move(carousel, 'left')
