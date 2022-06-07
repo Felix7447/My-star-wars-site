@@ -22,10 +22,15 @@ const vehicles = async () => {
 const createVehicles = (vehicles) => {
   let view = ``;
   vehicles.forEach(element => {
+    let name = element.name;
+    if(name.indexOf("/") >= 0) {
+      let position = name.indexOf("/");
+      name = name.substring(0, position) + "-" + name.substring(position + 1, name.length);
+    }
     view += `
       <div class="card-info">
         <h2>${element.name}</h2>
-        <img src="https://media.contentapi.ea.com/content/dam/star-wars-battlefront-2/images/2019/08/swbf2-refresh-hero-large-heroes-page-luke-skywalker-16x9-xl.jpg.adapt.crop1x1.320w.jpg" alt="Character">
+        <img src="../assets/images/Vehicles/${name}.png" alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
             <p>Model: ${element.model} <br>

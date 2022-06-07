@@ -25,7 +25,7 @@ const createFilms = (films) => {
     view += `
       <div class="card-info">
         <h2>${element.title}</h2>
-        <img src="https://media.contentapi.ea.com/content/dam/star-wars-battlefront-2/images/2019/08/swbf2-refresh-hero-large-heroes-page-luke-skywalker-16x9-xl.jpg.adapt.crop1x1.320w.jpg" alt="Character">
+        <img src="../assets/images/Films/${element.title}.png" alt="${element.title}">
         <div class="card-info-text">
             <h3>Description</h3>
             <p> Director: ${element.director} <br>

@@ -25,7 +25,7 @@ const createCharacters = (characters) => {
     view += `
       <div class="card-info">
         <h2>${element.name}</h2>
-        <img src="https://media.contentapi.ea.com/content/dam/star-wars-battlefront-2/images/2019/08/swbf2-refresh-hero-large-heroes-page-luke-skywalker-16x9-xl.jpg.adapt.crop1x1.320w.jpg" alt="Character">
+        <img src="../assets/images/Characters/${element.name}.png" alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
             <p>Height: ${element.height} cm <br>

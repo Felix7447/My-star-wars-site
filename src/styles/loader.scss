@@ -1,0 +1,29 @@
+.loader-container {
+    background-color: rgba(0, 0, 0, 0.658);
+    height: 500px;
+    width: 100%;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 15px rgb(149, 149, 248) solid;
+    border-top-color: blue;
+    border-top-style: groove;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
