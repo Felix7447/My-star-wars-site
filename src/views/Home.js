@@ -89,14 +89,12 @@ function addEvents() {
 
     charactersImage.addEventListener("load", function() {
         loader.style.display = 'none';
-        console.log("loaded");
     });
 
     for (let index = 0; index < carouselElement.length; index++) {
         carouselElement[index].addEventListener("click", function() {
             loader.style.display = 'flex';
-            console.log("hi");
-        })
+        });
     }
     
     leftArrow.addEventListener("click", function() {
