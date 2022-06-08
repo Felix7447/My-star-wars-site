@@ -145,13 +145,13 @@ dist
 *.scss.map
 
 ### Files ###
-src/assets/images/*.png
-src/assets/images/Characters/*.png
-src/assets/images/Planets/*.png
-src/assets/images/Films/*.png
-src/assets/images/Species/*.png
-src/assets/images/Vehicles/*.png
-src/assets/images/Starships/*.png
+# src/assets/images/*.png
+# src/assets/images/Characters/*.png
+# src/assets/images/Planets/*.png
+# src/assets/images/Films/*.png
+# src/assets/images/Species/*.png
+# src/assets/images/Vehicles/*.png
+# src/assets/images/Starships/*.png
 
 ### Icons ###
-src/assets/icons/*.png
+# src/assets/icons/*.png
