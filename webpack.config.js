@@ -80,7 +80,7 @@ module.exports = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'assets/[name].css'
+            filename: './[name].css'
         }),
         new CopyPlugin({
             patterns: [
