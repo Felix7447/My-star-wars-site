@@ -1,4 +1,7 @@
+import { showButtons } from '@utils/HeaderButtons';
+
 const notFound = () => {
+    showButtons(false);
     const view = `
         <section class="notFound">
             <h1>Error 404</h1>

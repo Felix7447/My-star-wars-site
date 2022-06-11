@@ -4,6 +4,6 @@
     ],
     "plugins": [
         "@babel/plugin-transform-runtime",
-        // "transform-inline-environment-variables"
+        "transform-inline-environment-variables"
     ]
 }

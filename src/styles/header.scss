@@ -7,7 +7,7 @@
 }
 
 @mixin buttons {
-    width: 15%;
+    width: 54px;
     background-color: transparent;
     border-radius: 50%;
     opacity: 0.8;
@@ -25,7 +25,7 @@ header {
 }
 
 .header_star-wars-logo img {
-    width: 46%;
+    width: 180px;
 }
 
 .back-button img {
@@ -39,4 +39,14 @@ header {
 
 .back-button img:hover, .next-button img:hover {
     opacity: 1;
+}
+
+@media (max-width: 400px) {
+    .header_star-wars-logo img {
+        width: 150px;
+    }
+
+    .back-button img, .next-button img {
+        width: 46px;
+    }
 }

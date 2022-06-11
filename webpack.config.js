@@ -26,6 +26,7 @@ module.exports = {
             '@routes': path.resolve(__dirname, './src/routes/'),
             '@styles': path.resolve(__dirname, './src/styles/'),
             '@views': path.resolve(__dirname, './src/views/'),
+            '@utils': path.resolve(__dirname, './src/utils/'),
             '@config': path.resolve(__dirname, './src/config/'),
         }
     },
@@ -54,7 +55,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.png/,
+                test: /\.(png|svg)/,
                 type: 'asset/resource'
             },
             {

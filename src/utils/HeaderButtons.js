@@ -13,12 +13,12 @@ export const showButtons = (on) => {
 
 export const addRef = (anchor) => {
     let locations = ['#/Characters', '#/Planets', '#/Films', '#/Species', '#/Vehicles', '#/Starships'];
-    let index = locations.indexOf(window.location.hash)
+    let index = locations.indexOf(window.location.hash);
 
     if (index + 1 >= locations.length) {
         index = -1
     }
-    
+
     anchor.href = locations[index + 1];
 }
 
