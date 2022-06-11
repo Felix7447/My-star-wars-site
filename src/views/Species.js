@@ -1,5 +1,6 @@
 import config from '@config/config';
-import loader from '@views/Loader';
+import loader from '@utils/Loader';
+import { ScrollUp } from '@utils/ScrollUp';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -8,10 +9,13 @@ const species = async () => {
     const info = await axios.get(config.API_URL_SPECIES);
     const species = info.data.results;
     const card = createSpecies(species);
+
+    const scrollUpButton = ScrollUp();
     const loading = loader();
 
     const view = `
       ${loading}
+      ${scrollUpButton}
       <h1>Species</h1>
       <section class="cards-container">
         ${card}

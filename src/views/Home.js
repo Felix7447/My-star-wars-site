@@ -1,4 +1,4 @@
-import loader from '@views/Loader';
+import loader from '@utils/Loader';
 import next from '@icons/next.png';
 import Characters from '@images/Characters.png';
 import Planets from '@images/Planets.png';
@@ -6,10 +6,14 @@ import Films from '@images/Films.png';
 import Species from '@images/Species.png';
 import Vehicles from '@images/Vehicles.png';
 import Starships from '@images/Starships.png';
+import showButtons from '@utils/HeaderButtons';
 
 
 const home = () => {
     const mainContent = document.getElementById('root');
+
+    showButtons(false);
+
     let loading = loader();
     const view = `
     ${loading}
@@ -32,7 +36,7 @@ const home = () => {
             </div>
             <div class="carousel-element">
                 <a class="carouselElement" href="./#/Planets">
-                    <img class="carousel-element__image" src=${Planets} alt="Planets">
+                    <img id="planetsImage" class="carousel-element__image" src=${Planets} alt="Planets">
                     <div class="carousel-element__content">
                         <h3>Planets</h3>
                     </div>
@@ -40,7 +44,7 @@ const home = () => {
             </div>
             <div class="carousel-element">
                 <a class="carouselElement" href="./#/Films">
-                    <img class="carousel-element__image" src=${Films} alt="Films">
+                    <img id="filmsImage" class="carousel-element__image" src=${Films} alt="Films">
                     <div class="carousel-element__content">
                         <h3>Films</h3>
                     </div>
@@ -48,7 +52,7 @@ const home = () => {
             </div>
             <div class="carousel-element">
                 <a class="carouselElement" href="./#/Species">
-                    <img class="carousel-element__image" src=${Species} alt="Species">
+                    <img id="speciesImage" class="carousel-element__image" src=${Species} alt="Species">
                     <div class="carousel-element__content">
                         <h3>Species</h3>
                     </div>
@@ -56,7 +60,7 @@ const home = () => {
             </div>
             <div class="carousel-element">
                 <a class="carouselElement" href="./#/Vehicles">
-                    <img class="carousel-element__image" src=${Vehicles} alt="Vehicles">
+                    <img id="vehiclesImage" class="carousel-element__image" src=${Vehicles} alt="Vehicles">
                     <div class="carousel-element__content">
                         <h3>Vehicles</h3>
                     </div>
@@ -64,7 +68,7 @@ const home = () => {
             </div>
             <div class="carousel-element">
                 <a class="carouselElement" href="./#/Starships">
-                    <img class="carousel-element__image" src=${Starships} alt="Starships">
+                    <img id="starshipsImage" class="carousel-element__image" src=${Starships} alt="Starships">
                     <div class="carousel-element__content">
                         <h3>Starships</h3>
                     </div>    
@@ -75,6 +79,7 @@ const home = () => {
     `
     mainContent.innerHTML = view;
     addEvents();
+    removeLoading()
 }
 
 function addEvents() {
@@ -86,10 +91,6 @@ function addEvents() {
     const loader = document.getElementById('loader');
 
     loader.style.display = 'flex';
-
-    charactersImage.addEventListener("load", function() {
-        loader.style.display = 'none';
-    });
 
     for (let index = 0; index < carouselElement.length; index++) {
         carouselElement[index].addEventListener("click", function() {
@@ -115,6 +116,63 @@ function move(element, direction) {
     } else if (direction === 'left') {
         element.scrollTo(currentScroll - step, 0);
     }
+}
+
+function removeLoading() {
+    const charactersImage = document.getElementById('charactersImage');
+    const planetsImage = document.getElementById('planetsImage');
+    const filmsImage = document.getElementById('filmsImage');
+    const speciesImage = document.getElementById('speciesImage');
+    const vehiclesImage = document.getElementById('vehiclesImage');
+    const starshipsImage = document.getElementById('starshipsImage');
+    const loader = document.getElementById('loader');
+    let imagesLoaded = 0;
+
+    charactersImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+
+    planetsImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+
+    filmsImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+
+    speciesImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+
+    vehiclesImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+
+    starshipsImage.addEventListener("load", function() {
+        imagesLoaded++;
+        if (imagesLoaded === 6) {
+            removeLoader(loader)
+        }
+    });
+}
+
+function removeLoader(element) {
+    element.style.display = 'none'
 }
 
 export default home;

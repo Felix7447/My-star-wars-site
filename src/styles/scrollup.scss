@@ -1,0 +1,36 @@
+.scroll-up-container {
+    height: 84px;
+    width: 84px;
+    background-color: transparent;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 3;
+
+    button {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        border: 1px rgba(0, 0, 0, 0.678) solid;
+        padding: 28%;
+        background: radial-gradient(#fce431a6 40%, #DD8F2B);
+        transform: scale(0);
+        transition: 450ms all;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: radial-gradient(#fce431 40%, #DD8F2B);;
+    }
+}
+
+@media (max-width: 800px) {
+    .scroll-up-container {
+        right: 34px;
+    }
+    .scroll-up-container button {
+        background: radial-gradient(#fce431 40%, #DD8F2B);;
+    }
+}

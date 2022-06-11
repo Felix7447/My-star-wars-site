@@ -45,21 +45,6 @@ body {
     font-family: 'Bakbak One', cursive;
 }
 
-header {
-    @include sections;
-    margin-bottom: 4.5%;
-    display: flex;
-    align-items: center;
-
-    a {
-        cursor: pointer;
-    }
-}
-
-header img {
-    width: 45%;
-}
-
 main {
     @include sections;
     height: 80%;
@@ -73,7 +58,7 @@ main {
 .main-message {
     font-size: 3em;
     font-weight: bold;
-    margin: 3% 12px 24px;
+    margin: 2% 12px 24px;
 }
 
 // CAROUSEL STYLES
@@ -82,7 +67,6 @@ main {
     position: relative;
     width: inherit;
     height: 80%;
-    margin: 4% 0;
 }
 
 
@@ -105,11 +89,23 @@ main {
     position: relative;
     transform-origin: center;
     transition: 450ms all;
+    animation: slide 1s linear;
+    animation-iteration-count: 1;
     cursor: pointer;
 
     a {
         text-decoration: none;
         color: inherit;
+    }
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(-900px);
+    }
+
+    100% {
+        transform: translateX(0px);
     }
 }
 
@@ -171,16 +167,8 @@ main {
     }
 }
 
-// footer {
-//     @include sections;
-//     height: 200px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     margin-top: 3%;
-// }
-
 @media (max-width: 1100px) {
+    
     .carousel-element {
         height: 90%;
         width: 30%;
@@ -188,6 +176,10 @@ main {
 }
 
 @media (max-width: 600px) {
+    body {
+        background-position: top;
+    }
+
     .main-message {
         font-size: 2.8em;
     }
@@ -197,10 +189,12 @@ main {
     .carousel {
         padding: 4% 8%;
         height: 100%;
+        margin-bottom: 2%;
         overflow-x: scroll;
     }
     .carousel::-webkit-scrollbar {
         background: rgba(128, 128, 128, 0.144);
+        margin-bottom: 2px;
     }
     .carousel::-webkit-scrollbar-thumb {
         background: var(--scrollbar-color);

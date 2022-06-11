@@ -1,5 +1,6 @@
 import config from '@config/config';
-import loader from '@views/Loader';
+import loader from '@utils/Loader';
+import { ScrollUp } from '@utils/ScrollUp';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -9,10 +10,12 @@ const vehicles = async () => {
     const vehicles = info.data.results;
     const cards = createVehicles(vehicles);
 
+    const scrollUpButton = ScrollUp();
     const loading = loader();
 
     const view = `
       ${loading}
+      ${scrollUpButton}
       <h1>Vehicles</h1>
       <section class="cards-container">
         ${cards}
