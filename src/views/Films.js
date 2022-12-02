@@ -7,7 +7,7 @@ import '@styles/cards.scss'
 const characters = async () => {
   try {
     const info = await axios.get(config.API_URL_FILMS);
-    const films = info.data.results;
+    const films = info.data.result;
     const card = createFilms(films);
 
     const scrollUpButton = ScrollUp();
@@ -35,17 +35,17 @@ const characters = async () => {
 const createFilms = (films) => {
   let view = ``;
   films.forEach(element => {
-    const image = require(`@images/Films/${element.title}.png`);
+    const image = require(`@images/Films/${element.properties.title}.png`);
     view += `
       <div class="card-info">
-        <h2>${element.title}</h2>
-        <img src=${image} alt="${element.title}">
+        <h2>${element.properties.title}</h2>
+        <img src=${image} alt="${element.properties.title}">
         <div class="card-info-text">
             <h3>Description</h3>
-            <p> Director: ${element.director} <br>
-                Epidosde: ${element.episode_id} <br>
-                Producer: ${element.producer} <br>
-                Release Date: ${element.release_date}</p>
+            <p> Director: ${element.properties.director} <br>
+                Epidosde: ${element.properties.episode_id} <br>
+                Producer: ${element.properties.producer} <br>
+                Release Date: ${element.properties.release_date}</p>
         </div>
       </div>
     `

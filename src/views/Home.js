@@ -1,7 +1,7 @@
 import loader from '@utils/Loader';
 import next from '@icons/next.png';
 import showButtons from '@utils/HeaderButtons';
-import { carouselElements } from '@utils/carouselElements';
+import { carouselElements } from '@utils/CarouselElements';
 
 const home = () => {
     const mainContent = document.getElementById('root');

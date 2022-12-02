@@ -1,6 +1,7 @@
 import config from '@config/config';
 import loader from '@utils/Loader';
 import { ScrollUp } from '@utils/ScrollUp';
+import { getDataInfo } from '@utils/GetData';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -8,7 +9,8 @@ const species = async () => {
   try {
     const info = await axios.get(config.API_URL_SPECIES);
     const species = info.data.results;
-    const card = createSpecies(species);
+    const speciesInfo = await getDataInfo(species);
+    const card = createSpecies(speciesInfo);
 
     const scrollUpButton = ScrollUp();
     const loading = loader();
@@ -42,12 +44,12 @@ const createSpecies = (species) => {
         <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
-            <p>Average Height: ${element.average_height} cm <br>
-                Average Lifespan: ${element.average_lifespan} years <br>
-                Classification: ${element.classification} <br>
-                Designation: ${element.designation} <br>
-                Language: ${element.language} <br>
-                Hair Colors: ${element.hair_colors}</p>
+            <p>Average Height: ${element.properties.average_height} cm <br>
+                Average Lifespan: ${element.properties.average_lifespan} years <br>
+                Classification: ${element.properties.classification} <br>
+                Designation: ${element.properties.designation} <br>
+                Language: ${element.properties.language} <br>
+                Hair Colors: ${element.properties.hair_colors}</p>
         </div>
       </div>
     `

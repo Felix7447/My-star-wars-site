@@ -1,6 +1,7 @@
 import config from '@config/config';
 import loader from '@utils/Loader';
 import { ScrollUp } from '@utils/ScrollUp';
+import { getDataInfo } from '../utils/GetData';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -8,7 +9,8 @@ const characters = async () => {
   try {
     const info = await axios.get(config.API_URL_PEOPLE);
     const characters = info.data.results;
-    const charactersView = createCharacters(characters);
+    const charactersInfo = await getDataInfo(characters);
+    const charactersView = createCharacters(charactersInfo);
     
     const scrollUpButton = ScrollUp();
     const loading = loader();
@@ -42,13 +44,13 @@ const createCharacters = (characters) => {
         <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
-            <p>Height: ${element.height} cm <br>
-                Mass: ${element.mass} kg <br>
-                Hair Color: ${element.hair_color} <br>
-                Skin Color: ${element.skin_color} <br>
-                Eye Color: ${element.eye_color} <br>
-                Birth Year: ${element.birth_year} <br>
-                Gender: ${element.gender}</p>
+            <p>Height: ${element.properties.height} cm <br>
+                Mass: ${element.properties.mass} kg <br>
+                Hair Color: ${element.properties.hair_color} <br>
+                Skin Color: ${element.properties.skin_color} <br>
+                Eye Color: ${element.properties.eye_color} <br>
+                Birth Year: ${element.properties.birth_year} <br>
+                Gender: ${element.properties.gender}</p>
         </div>
       </div>
     `

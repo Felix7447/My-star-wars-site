@@ -1,6 +1,7 @@
 import config from '@config/config';
 import loader from '@utils/Loader';
 import { ScrollUp } from '@utils/ScrollUp';
+import { getDataInfo } from '@utils/GetData';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -8,7 +9,8 @@ const starships = async () => {
   try {
     const info = await axios.get(config.API_URL_STARSHIPS);
     const starships = info.data.results;
-    const cards = createStarships(starships);
+    const starshipsInfo = await getDataInfo(starships);
+    const cards = createStarships(starshipsInfo);
 
     const scrollUpButton = ScrollUp();
     const loading = loader();
@@ -22,7 +24,7 @@ const starships = async () => {
       </section>
     `
     return view;
-    
+
   } catch (error) {
     const message = `
       <h1>${error.message}</h1>
@@ -42,13 +44,13 @@ const createStarships = (starships) => {
         <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
-            <p>Model: ${element.model} <br>
+            <p>Model: ${element.properties.model} <br>
             Manufacturer: ${element.manufacturer} <br>
-            Max Atmosphering Speed: ${element.max_atmosphering_speed} <br>
-            Passengers: ${element.passengers} <br>
-            Length: ${element.length} <br>
-            Cargo Capacity: ${element.cargo_capacity} <br>
-            Starship Class: ${element.starship_class}</p>
+            Max Atmosphering Speed: ${element.properties.max_atmosphering_speed} <br>
+            Passengers: ${element.properties.passengers} <br>
+            Length: ${element.properties.length} <br>
+            Cargo Capacity: ${element.properties.cargo_capacity} <br>
+            Starship Class: ${element.properties.starship_class}</p>
         </div>
       </div>
     `

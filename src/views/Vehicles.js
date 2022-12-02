@@ -1,6 +1,7 @@
 import config from '@config/config';
 import loader from '@utils/Loader';
 import { ScrollUp } from '@utils/ScrollUp';
+import { getDataInfo } from '@utils/GetData';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -8,7 +9,8 @@ const vehicles = async () => {
   try {
     const info = await axios.get(config.API_URL_VEHICLES);
     const vehicles = info.data.results;
-    const cards = createVehicles(vehicles);
+    const vehiclesInfo = await getDataInfo(vehicles);
+    const cards = createVehicles(vehiclesInfo);
 
     const scrollUpButton = ScrollUp();
     const loading = loader();
@@ -47,13 +49,13 @@ const createVehicles = (vehicles) => {
         <img src=${image} alt="${element.name}">
         <div class="card-info-text">
             <h3>Description</h3>
-            <p>Model: ${element.model} <br>
-              Manufacturer: ${element.manufacturer} <br>
-              Max Atmosphering Speed: ${element.max_atmosphering_speed} <br>
-              Passengers: ${element.passengers} <br>
-              Length: ${element.length} <br>
-              Cargo Capacity: ${element.cargo_capacity} <br>
-              Vehicle Class: ${element.vehicle_class}</p>
+            <p>Model: ${element.properties.model} <br>
+              Manufacturer: ${element.properties.manufacturer} <br>
+              Max Atmosphering Speed: ${element.properties.max_atmosphering_speed} <br>
+              Passengers: ${element.properties.passengers} <br>
+              Length: ${element.properties.length} <br>
+              Cargo Capacity: ${element.properties.cargo_capacity} <br>
+              Vehicle Class: ${element.properties.vehicle_class}</p>
         </div>
       </div>
     `
