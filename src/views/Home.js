@@ -1,17 +1,11 @@
 import loader from '@utils/Loader';
 import next from '@icons/next.png';
-import Characters from '@images/Characters.png';
-import Planets from '@images/Planets.png';
-import Films from '@images/Films.png';
-import Species from '@images/Species.png';
-import Vehicles from '@images/Vehicles.png';
-import Starships from '@images/Starships.png';
 import showButtons from '@utils/HeaderButtons';
-
+import { carouselElements } from '@utils/carouselElements';
 
 const home = () => {
     const mainContent = document.getElementById('root');
-
+    const elements = getCarouselElements(carouselElements);
     showButtons(false);
 
     let loading = loader();
@@ -26,60 +20,13 @@ const home = () => {
             <img src=${next}>
         </div>
         <section id="carousel" class="carousel">
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Characters">
-                    <img id="charactersImage" class="carousel-element__image" src=${Characters} alt="Characters">
-                    <div class="carousel-element__content">
-                        <h3>Characters</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Planets">
-                    <img id="planetsImage" class="carousel-element__image" src=${Planets} alt="Planets">
-                    <div class="carousel-element__content">
-                        <h3>Planets</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Films">
-                    <img id="filmsImage" class="carousel-element__image" src=${Films} alt="Films">
-                    <div class="carousel-element__content">
-                        <h3>Films</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Species">
-                    <img id="speciesImage" class="carousel-element__image" src=${Species} alt="Species">
-                    <div class="carousel-element__content">
-                        <h3>Species</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Vehicles">
-                    <img id="vehiclesImage" class="carousel-element__image" src=${Vehicles} alt="Vehicles">
-                    <div class="carousel-element__content">
-                        <h3>Vehicles</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="carousel-element">
-                <a class="carouselElement" href="./#/Starships">
-                    <img id="starshipsImage" class="carousel-element__image" src=${Starships} alt="Starships">
-                    <div class="carousel-element__content">
-                        <h3>Starships</h3>
-                    </div>    
-                </a>
-            </div>
+            ${elements}
         </section>
     </section>
     `
     mainContent.innerHTML = view;
     addEvents();
-    removeLoading()
+    removeLoading();
 }
 
 function addEvents() {
@@ -87,7 +34,6 @@ function addEvents() {
     const leftArrow = document.getElementById('left-arrow');
     const rightArrow = document.getElementById('right-arrow');
     const carouselElement = document.getElementsByClassName('carouselElement');
-    const charactersImage = document.getElementById('charactersImage');
     const loader = document.getElementById('loader');
 
     loader.style.display = 'flex';
@@ -99,11 +45,11 @@ function addEvents() {
     }
     
     leftArrow.addEventListener("click", function() {
-        move(carousel, 'left')
+        move(carousel, 'left');
     });
     
     rightArrow.addEventListener("click", function() {
-        move(carousel, 'right')
+        move(carousel, 'right');
     });
 }
 
@@ -126,53 +72,39 @@ function removeLoading() {
     const vehiclesImage = document.getElementById('vehiclesImage');
     const starshipsImage = document.getElementById('starshipsImage');
     const loader = document.getElementById('loader');
+
     let imagesLoaded = 0;
+    let images = [charactersImage, planetsImage, filmsImage, speciesImage, vehiclesImage, starshipsImage];
 
-    charactersImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
-
-    planetsImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
-
-    filmsImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
-
-    speciesImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
-
-    vehiclesImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
-
-    starshipsImage.addEventListener("load", function() {
-        imagesLoaded++;
-        if (imagesLoaded === 6) {
-            removeLoader(loader)
-        }
-    });
+    images.forEach(element => {
+        element.addEventListener("load", function() {
+            imagesLoaded++;
+            if (imagesLoaded === 6) {
+                removeLoader(loader);
+            }
+        });
+    })
 }
 
 function removeLoader(element) {
-    element.style.display = 'none'
+    element.style.display = 'none';
+}
+
+function getCarouselElements(info) {
+    let elements = '';
+    info.forEach(element => {
+        elements += `
+            <div class="carousel-element">
+                <a class="carouselElement" href="${element.href}">
+                    <img id="${element.imageId}" class="carousel-element__image" src="${element.imageSrc}" alt="${element.name}">
+                    <div class="carousel-element__content">
+                        <h3>${element.name}</h3>
+                    </div>
+                </a>
+            </div>
+        `
+    })
+    return elements;
 }
 
 export default home;
