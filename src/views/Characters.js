@@ -1,7 +1,6 @@
 import config from '@config/config';
 import loader from '@utils/Loader';
 import { ScrollUp } from '@utils/ScrollUp';
-import { addRef } from '@utils/HeaderButtons';
 import axios from 'axios';
 import '@styles/cards.scss'
 
@@ -9,7 +8,7 @@ const characters = async () => {
   try {
     const info = await axios.get(config.API_URL_PEOPLE);
     const characters = info.data.results;
-    const char = createCharacters(characters);
+    const charactersView = createCharacters(characters);
     
     const scrollUpButton = ScrollUp();
     const loading = loader();
@@ -19,10 +18,11 @@ const characters = async () => {
       ${scrollUpButton}
       <h1>Characters</h1>
       <section class="cards-container">
-        ${char}
+        ${charactersView}
       </section>
-  `;
-  return view;
+    `
+    return view;
+
   } catch (error) {
     const message = `
       <h1>${error.message}</h1>
@@ -53,7 +53,6 @@ const createCharacters = (characters) => {
       </div>
     `
   });
-
   
   return view;
 }

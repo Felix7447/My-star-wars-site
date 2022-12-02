@@ -1,5 +1,3 @@
-import scrollUpIcon from '@icons/arrow-up-long-solid.svg'
-
 export const ScrollUp = () => {
     const view = `
     <div id="scrollUp" class="scroll-up-container">

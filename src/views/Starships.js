@@ -20,8 +20,9 @@ const starships = async () => {
       <section class="cards-container">
         ${cards}
       </section>
-  `;
-  return view;
+    `
+    return view;
+    
   } catch (error) {
     const message = `
       <h1>${error.message}</h1>

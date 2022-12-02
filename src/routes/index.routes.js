@@ -9,7 +9,7 @@ import notFound from '@views/notFound';
 import { ScrollUpEvents } from '@utils/ScrollUp';
 import { showButtons, addRef } from '@utils/HeaderButtons';
 
-const mainContent = document.getElementById('root')
+const mainContent = document.getElementById('root');
 
 const routes = { 
     '': home,
@@ -23,7 +23,7 @@ const routes = {
 
 async function router(route) {
     if (route === '') {
-        home()
+        home();
     } else {
         const content = await routes[route];
         if (!content) {
@@ -36,7 +36,7 @@ async function router(route) {
 
             const nextButton = document.getElementById('nextButton');
             
-            addRef(nextButton)
+            addRef(nextButton);
             showButtons(true);
             ScrollUpEvents();
         }
